@@ -6,12 +6,10 @@ export default function AtroposApp () {
     <div id="app">
       {/* Atropos */}
       <Atropos className="my-atropos" 
-        activeOffset={40}
-        shadowScale={1.05}
-        onEnter={() => console.log('Enter')}
-        onLeave={() => console.log('Leave')}
-        onRotate={(x, y) => console.log('Rotate', x, y)}>
-        {/* ... */}aaa
+     >
+        <div className='wapper'>
+          aaaaaa
+        </div>
       </Atropos>
     </div>
   )

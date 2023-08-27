@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'atropos/scss';
+@import 'utils/atropox.scss';
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -29,16 +30,3 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.my-atropos {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  padding: 6rem 8rem;
-}
-
-.wapper {
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  background: rgb(6, 64, 110, 1);
-}

@@ -1,0 +1,98 @@
+.my-atropos {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 6rem 8rem;
+}
+  
+.wapper {
+    width: 100%;
+    height: 100%;
+    //background-image: url('../../public/assets/img/5205444-1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: #177078;
+    background: linear-gradient(180deg, #177078 0%, #1662a0 49%);
+}
+
+
+.figure {
+    position: absolute !important;
+    &.one {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 65%);
+        left: -50px;
+        top: -30px;
+        padding-right: 40px;
+        padding-bottom: 20px;
+        z-index: 2;
+    }
+    &.two {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 98%);
+        left: -20px;
+        top: -30px;
+        padding-right: 20px;
+        z-index: 3;
+    }
+    &.three {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 10%);
+        right: -60px;
+        top: -22px;
+        padding-left: 40px;
+        padding-bottom: 20px;
+        z-index: 1;
+    }
+    &.four {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 55%);
+        right: -30px;
+        bottom: -26px;
+        padding-left: 30px;
+        padding-top: 20px;
+        z-index: 4;
+    }
+    &.five {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 62%);
+        left: -20px;
+        bottom: -20px;
+        padding-top: 20px;
+        z-index: 1;
+    }
+    &.six {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 93%);
+        left: -36px;
+        top: -10px;
+        padding-right: 20px;
+        z-index: 2;
+    }
+    &.seven {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 81%);
+        right: -24px;
+        bottom: -26px;
+        padding-left: 20px;
+        padding-top: 20px;
+        z-index: 4;
+    }
+    &.eight {
+        width: 100%;
+        height: auto;
+        max-width: calc(100vw - 78%);
+        right: -20px;
+        bottom: -30px;
+        padding-top: 20px;
+        padding-left: 20px;
+        z-index: 2;
+    }
+}

@@ -1,0 +1,40 @@
+/* Font size */
+
+:root {
+    --font-body: 10px;
+}
+
+body {
+    font-size: var(--font-body)
+}
+
+/* media query */
+@media screen and (min-width: 556px) {
+    :root {
+        --font-body: 12px;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    :root {
+        --font-body: 14px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    :root {
+        --font-body: 16px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    :root {
+        --font-body: 18px;
+    }
+}
+
+@media screen and (min-width: 1444px) {
+    :root {
+        --font-body: 20px;
+    }
+}

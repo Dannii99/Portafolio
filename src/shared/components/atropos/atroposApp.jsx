@@ -1,6 +1,7 @@
 // import Atropos component
 import Atropos from 'atropos/react';
 import { Image } from "@nextui-org/react";
+import NavbarApp from "../navbar/navbarApp";
 
 const title = `Hi, \n I'm \n Frontend \n developer.`
 const textoConSaltosDeLinea = 'Línea 1\nLínea 2\nLínea 3';
@@ -20,7 +21,8 @@ export default function AtroposApp () {
       rotateYMax={8}
      >
         <div className='wapper'>
-          <div className='content-title'>
+          <NavbarApp />
+          <div className='content-title'  data-atropos-offset="1">
             {lineas.map((linea, index) => (
               <h1 className='title' key={index}>
                 {linea}

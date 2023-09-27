@@ -5,8 +5,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Treejs() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <AvatarApp/>
+    <main className="flex flex-col items-center justify-center">
+     { <AvatarApp/>}
     </main>
   )
 }

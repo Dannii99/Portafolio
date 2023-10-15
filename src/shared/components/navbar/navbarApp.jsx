@@ -1,5 +1,4 @@
-
-  
+ 
 export default function NavbarApp () {
   return (
     <div className="content-nav">

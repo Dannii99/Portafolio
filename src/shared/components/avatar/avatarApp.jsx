@@ -1,12 +1,17 @@
 // pages/index.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import WebGL from 'three/addons/capabilities/WebGL.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
+import { TextureLoader } from 'three';
+import 'tailwindcss/tailwind.css';
 import * as THREE from 'three';
   
 export default function NavbarApp () {
+
+    const containerRef = useRef();
+    const [textureLoaded, setTextureLoaded] = useState(false);
 
     useEffect(() => {
         // Verifica si ya existe una instancia de la escena, la cámara y el renderizador
@@ -39,11 +44,10 @@ export default function NavbarApp () {
 
         // Crea un cubo y agrega a la escena
         const geometry = new THREE.BoxGeometry(2,2,2,1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+        const material = new THREE.MeshBasicMaterial({ color: false, wireframe: false });
         const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+        //scene.add(cube);
 
-        
         // Crea un cono y agrega a la escena
         const materialCone = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
         const geometryCone = new THREE.ConeGeometry(1, 2, 3, 4);
@@ -57,7 +61,7 @@ export default function NavbarApp () {
         const geometrySphere = new THREE.SphereGeometry(1, 32, 32, 0);
         const sphere = new THREE.Mesh(geometrySphere, materialSphere);
         sphere.position.x = -5
-       scene.add(sphere);
+        scene.add(sphere);
 
 
         // Crea un cilindro y agrega a la escena
@@ -114,6 +118,17 @@ export default function NavbarApp () {
         // Se debe llamar a Controls.update() después de cualquier cambio manual en la transformación de la cámara.
         controls.update();
 
+        // Agregando luces a la escena
+        
+        //luces direcionadas
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
+
+        // luz ambiente
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        
         // Configurar el controlador de tranform en un elemento o geometria
         const tControlOne = new TransformControls(camera, renderer.domElement);
         const tControlTwo = new TransformControls(camera, renderer.domElement);
@@ -149,7 +164,36 @@ export default function NavbarApp () {
 
         // Agregar escena
         scene.add(tControlOne, tControlTwo, tControlThree)
+
+
+        const loadTexture = () => {
+          // instantiate a loader
+          const loader = new TextureLoader();
+          // load a resource
+          loader.load(
+            // resource URL
+            '/assets/img/textures/purple.jpg',
+            
+            // onLoad callback
+            ( texture ) => {
+              // Esta función se ejecutará cuando la textura se haya cargado con éxito.
+                setTextureLoaded(true);
+                // add the box mesh to the scene
+                material.map = texture;
+                scene.add(cube);
+              },
+              
+              // onProgress callback currently not supported
+              undefined,
+              
+              // onError callback
+              function ( err ) {
+                console.error( 'An error happened.' );
+              });
         
+        }
+
+
         // Crea una función de animación
         const animate = () => {
           requestAnimationFrame(animate);
@@ -165,7 +209,8 @@ export default function NavbarApp () {
           renderer.render(scene, camera);
         };
 
-    
+        loadTexture();
+        
         // Llama a la función de animación
         if ( WebGL.isWebGLAvailable() ) {
            animate();
@@ -207,5 +252,17 @@ export default function NavbarApp () {
       camera.updateProjectionMatrix();
     };
 
-    return <div id='container' />;
+    return <div ref={containerRef} id='container' >
+        {textureLoaded ? (
+        // Renderiza elementos aquí una vez que la textura se haya cargado.
+        <div className='absolute top-0 left-0 w-full'>
+          <p>Textura cargada y elementos creados.</p>
+        </div>
+      ) : (
+        // Puedes mostrar un mensaje de carga mientras la textura se está cargando.
+        <div className='absolute top-0 left-0 w-full'>
+          <p>Cargando...</p>
+        </div>
+      )}
+    </div>;
   }
